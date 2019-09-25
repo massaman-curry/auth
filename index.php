@@ -7,7 +7,7 @@
 </head>
 
 <body>
-  <form name="new_rgstr" action="" method="post">
+  <form name="form_confirm" action="prereg.php" method="post">
 
     姓:
     <input type="text" name="last_name"><br>
