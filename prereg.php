@@ -19,7 +19,7 @@
     $password = $_POST['pswd'];
 ?>
 
-<form name="new_registr" action="" method="post">
+<form name="new_registr" action="premember_model.php" method="post">
 
     <input type="hidden" name="last_name" value="<?= $last_name ?>">
     <input type="hidden" name="first_name" value="<?= $first_name ?>">

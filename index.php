@@ -7,6 +7,7 @@
 </head>
 
 <body>
+
   <form name="form_confirm" action="prereg.php" method="post">
 
     姓:
@@ -37,6 +38,7 @@
     <input type="submit" value="送 信"><br>
 
   <form>
+
 </body>
 
 </html>

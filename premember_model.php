@@ -26,24 +26,29 @@ function db_connect(){
 
 $pdo = db_connect();
 
-$sql = 'INSERT INTO pre_users(
+try{
 
+    $sql = 'INSERT INTO pre_users(
     email, pswd, last_name, first_name, birthday, prefecture)
     VALUES(
     :email, :pswd, :last_name, :first_name, :birthday, :prefecture
     )';
 
-$stmh = $pdo->prepare($sql);
+    $stmh = $pdo->prepare($sql);
 
-$stmh->bindValue(':email', $_POST['last_name']);
-$stmh->bindValue(':pswd', $_POST['pswd']);
-$stmh->bindValue(':last_name', $_POST['last_name']);
-$stmh->bindValue(':first_name', $_POST['first_name']);
-$stmh->bindValue(':birthday', $_POST['birth_year']);
-$stmh->bindValue(':prefecture', $_POST['prefecture']);
+    $stmh->bindValue(':email', $_POST['email'], PDO::PARAM_STR);
+    $stmh->bindValue(':pswd', $_POST['pswd'], PDO::PARAM_STR);
+    $stmh->bindValue(':last_name', $_POST['last_name'], PDO::PARAM_STR);
+    $stmh->bindValue(':first_name', $_POST['first_name'], PDO::PARAM_STR);
+    $stmh->bindValue(':birthday', $_POST['birth_year'], PDO::PARAM_INT);
+    $stmh->bindValue(':prefecture', $_POST['prefecture'], PDO::PARAM_INT);
 
-$stmh->execute();
+    $stmh->execute();
 
+}catch(PDOException $error){
 
+    $pdo->rollback();
 
+    print("エラー:" .$error->getMessage() );
 
+}
