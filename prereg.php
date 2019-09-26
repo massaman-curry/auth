@@ -16,7 +16,7 @@
     $birth_month = $_POST['birth_month'];
     $birth_day = $_POST['birth_day'];
     $prefecture = $_POST['prefecture'];
-    $password = $_POST['pwd'];
+    $password = $_POST['pswd'];
 ?>
 
 <form name="new_registr" action="" method="post">
@@ -28,7 +28,7 @@
     <input type="hidden" name="birth_month" value="<?= $birth_month ?>">
     <input type="hidden" name="birth_day" value="<?= $birth_day?>">
     <input type="hidden" name="prefecture" value="<?= $prefecture ?>">
-    <input type="hidden" name="password" value="<?= $password?>">
+    <input type="hidden" name="pswd" value="<?= $password?>">
 
 <p>姓: <?= $last_name?></p>
 

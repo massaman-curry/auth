@@ -32,7 +32,7 @@
     </select><br>
 
     パスワード:
-    <input type="password" name="pwd"><br>
+    <input type="password" name="pswd"><br>
 
     <input type="submit" value="送 信"><br>
 
