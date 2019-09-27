@@ -1,5 +1,23 @@
 <?php
 
+$data = ['email', 'pswd', 'last_name', 'first_name', 'birth_year', 'prefecture'];
+
+
+function check_data_set($data){
+
+    $i = 0;
+    $count = count($data);
+    
+    foreach ($data as $value){
+        isset($_POST[$value]) ? ++$i : '' ;
+    }
+
+    $result = $i == $count ? TRUE : FALSE;
+
+    return $result;
+
+}
+
 function db_connect(){
 
     $dsn = 'mysql:host=localhost;dbname=app1';
@@ -26,36 +44,41 @@ function db_connect(){
 
 $pdo = db_connect();
 
-try{
 
-    $pdo->beginTransaction();
+if (check_data_set($data)){
 
-    $sql = 'INSERT INTO preusers(
-        email, pswd, last_name, first_name, birthday, prefecture)
-        VALUES(
-        :email, :pswd, :last_name, :first_name, :birthday, :prefecture
-        )';
+    try{
 
-    $stmh = $pdo->prepare($sql);
+        $pdo->beginTransaction();
     
-    $stmh->bindValue(':email', $_POST['email'], PDO::PARAM_STR);
-    $stmh->bindValue(':pswd', $_POST['pswd'], PDO::PARAM_STR);
-    $stmh->bindValue(':last_name', $_POST['last_name'], PDO::PARAM_STR);
-    $stmh->bindValue(':first_name', $_POST['first_name'], PDO::PARAM_STR);
-    $stmh->bindValue(':birthday', $_POST['birth_year'], PDO::PARAM_INT);
-    $stmh->bindValue(':prefecture', $_POST['prefecture'], PDO::PARAM_INT);
+        $sql = 'INSERT INTO preusers(
+            email, pswd, last_name, first_name, birthday, prefecture)
+            VALUES(
+            :email, :pswd, :last_name, :first_name, :birthday, :prefecture
+            )';
     
-    $stmh->execute();
-    
-    $pdo->commit();
-    
-    print 'データを'.$stmh->rowCount().'件登録しました。';
-    
-} catch(PDOException $error){
-    
-    $pdo->rollback();
-    
-    print("エラー:" .$error->getMessage() );
+        $stmh = $pdo->prepare($sql);
+        
+        $stmh->bindValue(':email', $_POST['email'], PDO::PARAM_STR);
+        $stmh->bindValue(':pswd', $_POST['pswd'], PDO::PARAM_STR);
+        $stmh->bindValue(':last_name', $_POST['last_name'], PDO::PARAM_STR);
+        $stmh->bindValue(':first_name', $_POST['first_name'], PDO::PARAM_STR);
+        $stmh->bindValue(':birthday', $_POST['birth_year'], PDO::PARAM_INT);
+        $stmh->bindValue(':prefecture', $_POST['prefecture'], PDO::PARAM_INT);
+        
+        $stmh->execute();
+        
+        $pdo->commit();
+        
+        print 'データを'.$stmh->rowCount().'件登録しました。';
+        
+        
+    } catch(PDOException $error){
+        
+        $pdo->rollback();
+        
+        print("エラー:" .$error->getMessage() );
+        
+    }
     
 }
-
