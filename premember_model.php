@@ -2,7 +2,7 @@
 
 require_once 'base_model.php';
 
-class Premember_model extends Model {
+class Premember_model extends Model{
 
     private $data = ['email', 'pswd', 'last_name', 'first_name', 'birth_year', 'prefecture'];
 
@@ -27,6 +27,8 @@ class Premember_model extends Model {
         mb_send_mail($to, $subject, $message, $add_header);
 
     }
+
+}
 
     $pdo = db_connect();
 
@@ -68,5 +70,3 @@ class Premember_model extends Model {
         }
         
     }
-
-}
