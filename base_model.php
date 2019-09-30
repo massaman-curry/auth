@@ -2,7 +2,7 @@
 
 class Model{
 
-    protected function db_connect(){
+    public function db_connect(){
 
         $dsn = 'mysql:host=localhost;dbname=app1';
         $username = 'app1';
