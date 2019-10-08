@@ -2,7 +2,7 @@
 
 class Model{
 
-    public function db_connect(){
+    private function db_connect(){
 
         $dsn = 'mysql:host=localhost;dbname=app1';
         $username = 'app1';
@@ -26,23 +26,29 @@ class Model{
 
     }
 
-    function confirm_user(){
 
-        $to = 'usermail';
-        $subject = '会員登録確認';
-        $message = '下のメッセージ';
+    // public function get_data($column, $value){
 
-        // 会員登録ありがとうございます。
-        // 下のリンクにアクセスして会員登録を完了してください。
+    //     try{
 
-        // http://192.168.33.10/premember_model.php?username=username&link_pass=linkpass
+    //         $pdo = db_connect();
 
-        // このメールに見覚えがない場合はメールを削除してください。
-        
+    //         $sql = 'SELECT email, last_name, first_name FROM pre_users WHERE user_id = :user_id';
 
-        mb_send_mail($to, $subject, $message);
+    //         $stmh = $pdo->prepare($sql);
+    //         $stmh->bindValue(':user_id', $user_id, PDO::PARAM_INT);
 
-    }
+    //         $stmh->execute();
+
+
+    //     } catch(PDOException $Exception){
+
+    //         print('エラー:').$Exception->getMessage();
+
+    //     }
+
+
+    // }
 
 
 }

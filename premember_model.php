@@ -7,7 +7,7 @@ class Premember_model extends Model{
     private $data = ['email', 'pswd', 'last_name', 'first_name', 'birth_year', 'prefecture'];
 
 
-    function check_data_set($data){
+    public function check_data_set($data){
 
         $i = 0;
         $count = count($data);
@@ -22,9 +22,12 @@ class Premember_model extends Model{
 
     }
 
-    function send_email_to_user(){
+    public function confirm_mail($to){
+    
+        $subject = '会員登録確認';
+        $message = '会員登録ありがとうございます。下のリンクにアクセスして完了させてください';
 
-        mb_send_mail($to, $subject, $message, $add_header);
+        print mb_send_mail($to, $subject, $message) ? 'メールを送信しました' : 'エラーが発生しました';
 
     }
 
@@ -59,6 +62,8 @@ class Premember_model extends Model{
             $pdo->commit();
             
             print 'データを'.$stmh->rowCount().'件登録しました。';
+
+            confirm_mail($_POST['email']);
             
             
         } catch(PDOException $error){

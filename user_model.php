@@ -4,7 +4,7 @@ require_once 'base_model.php';
 
 class User_model extends base_model {
 
-    public function insert_user_model($pdo, $email, $pswd, $last_name, $first_name, $birthday, $prefecture){
+    private function insert_user_model($pdo, $email, $pswd, $last_name, $first_name, $birthday, $prefecture){
 
         try{
 
