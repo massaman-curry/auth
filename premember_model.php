@@ -22,6 +22,25 @@ class Premember_model extends Model{
 
     }
 
+    public function generate_random($length = 20){
+
+        $rand_array = array();
+        $alphabet = range('a', 'z');
+        $numbers = range(0, 9);
+        $base_strings = array_merge($alphabet, $numbers);
+
+        for($i = 0; $i < $length; $i++){
+
+            $rand = base_strings[random_int(0, 36)];
+
+            $rand_array[$i] = $rand;
+
+        }
+
+        return $rand_array;
+        
+    }
+
     public function confirm_mail($to){
     
         $subject = '会員登録確認';
